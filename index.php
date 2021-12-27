@@ -1,14 +1,21 @@
-<style>
-table, th, td {
-  	border: 1px solid black;
-  	border-collapse: collapse;
-	}
-</style>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Tool Arquipelagos</title>
+	<style>
+		table, th, td {
+  		border: 1px solid black;
+  		border-collapse: collapse;
+		}
+	</style>
+</head>
+<body>
 
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-ini_set('default_charset', "utf-8");
 error_reporting(E_ALL);
 
 $page = 1;
@@ -70,3 +77,5 @@ echo "<BR><BR><BR>";
 echo "<a href=\"index.php?page=1\">Primeira página</a>     <a href=\"index.php?page=" . ($page - 1) . "\">Página anterior</a>     <a href=\"index.php?page=" . ($page + 1) . "\">Página seguinte</a>";
 
 ?>
+</body>
+</html>
