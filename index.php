@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-ini_set('default_charset', "iso-8859-1");
+ini_set('default_charset', "utf-8");
 error_reporting(E_ALL);
 
 $page = 1;
@@ -25,7 +25,7 @@ for ($i = 0; $i < sizeof ($matches [0]); $i++)
     $match = $matches[0][$i];
     $obj = json_decode($match, true);
 
-    echo "Slug: " . $obj["slug"] . "<BR>";
+    //echo "Slug: " . $obj["slug"] . "<BR>";
     //echo "Guid: " . utf8_decode($obj["guid"]["rendered"]) . "<BR>";
     //echo "Link: " . $obj["link"] . "<BR>";
    
@@ -37,7 +37,7 @@ for ($i = 0; $i < sizeof ($matches [0]); $i++)
 	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13");
 	$data1 = curl_exec($ch);
 	curl_close($ch);
-	$data1 = utf8_decode($data1);
+	//$data1 = utf8_decode($data1);
 	preg_match ('/\<img src\=\"(.*?)\" class\="card\-img mb\-2\"/', $data1, $imagem);
 	
 	echo "<style>
@@ -54,13 +54,13 @@ for ($i = 0; $i < sizeof ($matches [0]); $i++)
 	echo "</td></tr><tr><td>";
 	echo "Data: " . $obj["date"] . " (modificado em " . $obj["modified"] . ")<BR>";
 	echo "</td><td>";
-	echo "Título: " . utf8_decode($obj["title"]["rendered"]) . "<BR>";
+	echo "Título: " . $obj["title"]["rendered"] . "<BR>";
 	echo "</td></tr><tr><td>";
 	echo "<a href=\"" . $imagem[1] . "\"> 
 			<img src=\"" . $imagem[1] . "\" style=\"width:200px;height:auto;\" alt=\"Image\" >
 		  </a>";
 	echo "</td><td>";
-	echo "Conteúdo: " . utf8_decode($obj["content"]["rendered"]) . "<BR>";
+	echo "Conteúdo: " . $obj["content"]["rendered"] . "<BR>";
 	echo "</td></tr></table>";
 
 	//echo utf8_decode($data1);
