@@ -25,7 +25,7 @@ for ($i = 0; $i < sizeof ($matches [0]); $i++)
     $match = $matches[0][$i];
     $obj = json_decode($match, true);
 
-    //echo "Slug: " . $obj["slug"] . "<BR>";
+    echo "Slug: " . $obj["slug"] . "<BR>";
     //echo "Guid: " . utf8_decode($obj["guid"]["rendered"]) . "<BR>";
     //echo "Link: " . $obj["link"] . "<BR>";
    
