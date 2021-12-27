@@ -1,3 +1,10 @@
+<style>
+table, th, td {
+  	border: 1px solid black;
+  	border-collapse: collapse;
+	}
+</style>
+
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -39,13 +46,6 @@ for ($i = 0; $i < sizeof ($matches [0]); $i++)
 	curl_close($ch);
 	//$data1 = utf8_decode($data1);
 	preg_match ('/\<img src\=\"(.*?)\" class\="card\-img mb\-2\"/', $data1, $imagem);
-	
-	echo "<style>
-	table, th, td {
-  		border: 1px solid black;
-  		border-collapse: collapse;
-		}
-	</style>";
 
 	echo "<table><tr><td>";
   	echo "#" . $i;
