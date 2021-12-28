@@ -15,10 +15,8 @@ getAPI($page);
 getsectionsAPI($page);
 */
 
-if (!isset($endPoint)) $endPoint = $api_url;
-
 function loginAPI( $userAPI , $passAPI ) {
-	global $endPoint;
+	$endPoint = "https://commons.wikimedia.org/w/api.php";
 
 	$params1 = [
 		"action" => "query",
@@ -59,6 +57,38 @@ function loginAPI( $userAPI , $passAPI ) {
 
 	$output = curl_exec( $ch );
 	curl_close( $ch );
+
+	echo $output;
+}
+
+
+function userinfoAPI ()
+{
+
+/*
+    userinfo.php
+    MediaWiki API Demos
+    Demo of `Userinfo` module: Get general user info and user rights
+    MIT License
+*/
+
+	$endPoint = "https://commons.wikimedia.org/w/api.php";
+	$params = [
+	    "action" => "query",
+	    "meta" => "userinfo",
+	    "uiprop" => "rights",
+	    "format" => "json"
+	];
+
+	$url = $endPoint . "?" . http_build_query( $params );
+
+	$ch = curl_init( $url );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	$output = curl_exec( $ch );
+	curl_close( $ch );
+
+	$result = json_decode( $output, true );
+	return $result;
 
 }
 
