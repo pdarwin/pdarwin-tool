@@ -4,6 +4,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Login Wikimedia</title>
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
 .button {
   border: none;
@@ -20,6 +23,7 @@
   background-color: white; 
   color: black; 
   border: 3px solid #008CBA;
+  width: 200px;
 }
 div {text-align: center;}
 </style>
@@ -33,18 +37,55 @@ error_reporting(E_ALL);
 
 include './bin/api.php';
 loginAPI($_GET["login"], $_GET["pass"]);
-echo "<BR><BR> O seu utilizador é:" . userinfoAPI ()["query"]["userinfo"]["name"];
 
-echo "<div>
-<form action=\"arq.php\" method=\"POST\">
-	<button class=\"button button2\" type=\"submit\" formaction=\"arq.php\">Arquipelagos</button>
+if (isset($_POST['action']))
+	{
+	switch ($_POST['action']) 
+		{
+            case 'verify':
+                echo "O seu utilizador é:" . userinfoAPI ()["query"]["userinfo"]["name"];
+                break;
+            case 'select':
+                select();
+                break;
+        }
+    }
+
+/*echo "<div>
+<form action=\"login.php\" method=\"POST\">
+	<button class=\"button button2\" type=\"submit\" formaction=\"login.php\" value=\"verify\" data-toggle=\"modal\" data-target=\"#myModal\">Verificar utilizador</button>
 </form>
-</div>"
-
-
-
-
+</div>";*/
 
 ?>
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="button button2" data-toggle="modal" data-target="#myModal">
+  	Verificar utilizador
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>
+          	<?php 
+          		echo "O seu utilizador é:" . userinfoAPI ()["query"]["userinfo"]["name"];
+          	 ?>
+          </p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div>
+	<form action="arq.php" method="POST">
+		<button class="button button2" type="submit" formaction="arq.php">Arquipelagos</button>
+	</form>
+</div>
 </body>
 </html>
