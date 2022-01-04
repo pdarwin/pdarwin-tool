@@ -16,7 +16,7 @@ getsectionsAPI($page);
 */
 
 function loginAPI( $userAPI , $passAPI ) {
-	$endPoint = "https://commons.wikimedia.org/w/api.php";
+	global $endPoint;
 
 	$params1 = [
 		"action" => "query",
@@ -72,7 +72,7 @@ function userinfoAPI ()
     MIT License
 */
 
-	$endPoint = "https://commons.wikimedia.org/w/api.php";
+	global $endPoint;
 	$params = [
 	    "action" => "query",
 	    "meta" => "userinfo",
@@ -84,8 +84,10 @@ function userinfoAPI ()
 
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_COOKIEJAR, "darwin_cookie.inc" );
-	curl_setopt( $ch, CURLOPT_COOKIEFILE, "darwin_cookie.inc" );
+
+	curl_setopt( $ch, CURLOPT_COOKIEJAR, $userAPI."_cookie.inc" );
+	curl_setopt( $ch, CURLOPT_COOKIEFILE, $userAPI."_cookie.inc" );
+  
 	$output = curl_exec( $ch );
 	curl_close( $ch );
 
