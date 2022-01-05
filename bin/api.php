@@ -29,8 +29,8 @@ function loginAPI( $userAPI , $passAPI ) {
 
 	$ch1 = curl_init( $url );
 	curl_setopt( $ch1, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch1, CURLOPT_COOKIEJAR, "darwin_cookie.inc" );
-	curl_setopt( $ch1, CURLOPT_COOKIEFILE, "darwin_cookie.inc" );
+	curl_setopt( $ch1, CURLOPT_COOKIEJAR, $userAPI."_cookie.inc" );
+	curl_setopt( $ch1, CURLOPT_COOKIEFILE, $userAPI."_cookie.inc" );
 
 	$output1 = curl_exec( $ch1 );
 	curl_close( $ch1 );
@@ -52,8 +52,8 @@ function loginAPI( $userAPI , $passAPI ) {
 	curl_setopt( $ch, CURLOPT_POST, true );
 	curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $params2 ) );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_COOKIEJAR, "darwin_cookie.inc" );
-	curl_setopt( $ch, CURLOPT_COOKIEFILE, "darwin_cookie.inc" );
+	curl_setopt( $ch, CURLOPT_COOKIEJAR, $userAPI."_cookie.inc" );
+	curl_setopt( $ch, CURLOPT_COOKIEFILE, $userAPI."_cookie.inc" );
 
 	$output = curl_exec( $ch );
 	curl_close( $ch );
@@ -62,7 +62,7 @@ function loginAPI( $userAPI , $passAPI ) {
 }
 
 
-function userinfoAPI ()
+function userinfoAPI ($userAPI)
 {
 
 /*
@@ -110,8 +110,8 @@ function editAPI( $text , $section , $minor , $summary , $page, $userAPI) {
 	$ch1 = curl_init( $url );
 
 	curl_setopt( $ch1, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch1, CURLOPT_COOKIEJAR, $userAPI."darwin_cookie.inc" );
-	curl_setopt( $ch1, CURLOPT_COOKIEFILE, $userAPI."darwin_cookie.inc" );
+	curl_setopt( $ch1, CURLOPT_COOKIEJAR, $userAPI."_cookie.inc" );
+	curl_setopt( $ch1, CURLOPT_COOKIEFILE, $userAPI."_cookie.inc" );
 
 	$output1 = curl_exec( $ch1 );
 	curl_close( $ch1 );
