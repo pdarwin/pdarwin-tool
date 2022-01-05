@@ -44,7 +44,7 @@ if (isset($_POST['action']))
 	switch ($_POST['action']) 
 		{
             case 'verify':
-                echo "O seu utilizador é:" . userinfoAPI ()["query"]["userinfo"]["name"];
+                echo "O seu utilizador é:" . userinfoAPI ($_GET["login"])["query"]["userinfo"]["name"];
                 break;
             case 'select':
                 select();
